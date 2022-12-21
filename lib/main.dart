@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart' hide State;
 import 'package:id_details_extractor/image_service.dart';
@@ -15,11 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'ID Details Extractor',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'ID Details Extractor'),
     );
   }
 }
@@ -50,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             recognizedText.match(
               (t) => Text(t),
-              () => Text('Please choose id'),
+              () => const Text('Please choose ID'),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -78,14 +77,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            if (isLoading) Center(child: CircularProgressIndicator()),
+            if (isLoading) const Center(child: CircularProgressIndicator()),
           ],
         ),
       ),
     );
   }
 
-  /// returns true if camera, false if gallery
+  /// Returns true if camera, false if gallery
   Future<Option<File>?> cameraOrGalleryDialog(BuildContext context) async {
     final dialog = SimpleDialog(
       title: const Text('Choose the image source.'),
@@ -115,6 +114,6 @@ class _MyHomePageState extends State<MyHomePage> {
         return _imageService.pickImage();
       }
     }
-    return None();
+    return const None();
   }
 }
